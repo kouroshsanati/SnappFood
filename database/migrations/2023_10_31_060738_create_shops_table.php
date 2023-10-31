@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->unsignedInteger('user_id');
             $table->string('title');
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('firstname');
+            $table->string('lastname');
             $table->string('PhoneNumber');
             $table->text('address')->nullable();
             $table->timestamps();
