@@ -36,7 +36,7 @@ require __DIR__ . '/auth.php';
 // admin routes
 
 Route::resource('shop', \App\Http\Controllers\ShopController::class);
-//Route::get('shop', 'ShopController@index')->name('shop.index');
+
 
 
 

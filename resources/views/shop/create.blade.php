@@ -10,7 +10,7 @@
         @csrf
         <div class="mt-4">
             <x-label for="title" value="Restaurant Name" />
-            <x-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" required autofocus autocomplete="username" />
+            <x-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" required  />
         </div>
         <div class="mt-4">
             <x-label for="firstname" value="Firstname" />
