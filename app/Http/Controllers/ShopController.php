@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -34,7 +35,39 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //validate request
+        $data = $request->validate([
+            'title' => 'required|unique:shops,title|between:3,100',
+            'firstname' => 'required|string',
+            'lastname' => 'required|string',
+            'PhoneNumber' => 'required|string|size:11',
+            'email' => 'required|unique:users,email',
+            'address' => 'nullable',
+            'username' => 'required|unique:users,name'
+        ]);
+        //create random password
+        $randomPassword = random_int(10000, 99999);
+
+        $user = User::create([
+            'name' => $request->username,
+            'email' => $request->email,
+            'role' => 'restaurant',
+            'email_verified_at' => now(),
+            'password' => bcrypt($randomPassword)
+        ]);
+
+        // create shop in db
+        Shop::create([
+            'user_id' => $user->id,
+            'title' => $request->title,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'PhoneNumber' => $request->PhoneNumber,
+            'address' => $request->address
+        ]);
+
+
     }
 
     /**
