@@ -67,6 +67,7 @@ class ShopController extends Controller
             'address' => $request->address
         ]);
 
+        return redirect()->route('shop.index')->with('success' , 'registered success' );
 
     }
 
