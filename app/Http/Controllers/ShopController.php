@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Notifications\CreateShop;
 
 class ShopController extends Controller
 {
@@ -70,6 +71,10 @@ class ShopController extends Controller
             'address' => $request->address
         ]);
 
+        //Notification For User
+        $user->notify(new CreateShop);
+
+        //redirection
         return redirect()->route('shop.index')->with('success', 'registered success');
 
     }
