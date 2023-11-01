@@ -19,7 +19,8 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return view('shop.index');
+        $shops = Shop::all();
+        return view('shop.index', compact('shops'));
     }
 
     /**
@@ -27,6 +28,8 @@ class ShopController extends Controller
      */
     public function create()
     {
+
+
         return view('shop.create');
     }
 
@@ -67,7 +70,7 @@ class ShopController extends Controller
             'address' => $request->address
         ]);
 
-        return redirect()->route('shop.index')->with('success' , 'registered success' );
+        return redirect()->route('shop.index')->with('success', 'registered success');
 
     }
 
