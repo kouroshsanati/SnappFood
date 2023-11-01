@@ -37,7 +37,7 @@
                     <td class="border-2 border-solid text-center p-2"> {{ $value->firstname  }}</td>
                     <td class="border-2 border-solid text-center p-2"> {{ $value->lastname }}</td>
                     <td class="border-2 border-solid text-center p-2"> {{ $value->PhoneNumber }}</td>
-                    <td class="border-2 border-solid text-center p-2"> {{ $value->created_at }}</td>
+                    <td class="border-2 border-solid text-center p-2"> {{ persianDate($value->created_at) }}</td>
                 </tr>
             @endforeach
 
