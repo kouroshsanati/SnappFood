@@ -37,6 +37,10 @@ require __DIR__ . '/auth.php';
 
 Route::resource('shop', \App\Http\Controllers\ShopController::class);
 
+/*Route::get('/test', function () {
+    dd(request()->user()->unreadNotifications);
+});*/
+
 
 
 

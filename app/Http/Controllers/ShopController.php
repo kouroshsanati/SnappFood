@@ -6,6 +6,7 @@ use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Notifications\CreateShop;
+use Illuminate\Support\Facades\Notification;
 
 class ShopController extends Controller
 {
@@ -72,7 +73,10 @@ class ShopController extends Controller
         ]);
 
         //Notification For User
-        $user->notify(new CreateShop);
+        //$user->notify(new CreateShop());
+       // $admin = User::query()->where('role', 'admin')->get();
+        //Notification::send($admin, new CreateShop($user));
+
 
         //redirection
         return redirect()->route('shop.index')->with('success', 'registered success');
@@ -109,5 +113,10 @@ class ShopController extends Controller
     public function destroy(Shop $shop)
     {
         //
+    }
+
+    public function test()
+    {
+
     }
 }
