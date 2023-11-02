@@ -15,9 +15,13 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('shop.index') }}" :active="request()->routeIs('shop.index')">
-                        {{ __('Manage Shops') }}
-                    </x-nav-link>
+
+                    @if(\Illuminate\Support\Facades\Auth::user()->hasRole('admin'))
+                        <x-nav-link href="{{ route('foodCategories.index') }}" :active="request()->routeIs('foodCategories.index')">
+                            {{ __('Manage Food Categories') }}
+                        </x-nav-link>
+                    @endif
+
                 </div>
             </div>
 
