@@ -36,7 +36,7 @@ require __DIR__ . '/auth.php';
 // admin routes
 
 Route::resource('foodCategories', \App\Http\Controllers\FoodCategoryController::class);
-
+Route::resource('restaurantCategories', \App\Http\Controllers\RestaurantCategoryController::class);
 
 
 

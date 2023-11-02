@@ -9,10 +9,10 @@
 </head>
 <body>
 
-<form method="post" action="{{ route('foodCategories.update', $category) }}">
-    @csrf
-    @method('PUT')
-    <input type="text" name="name" value="{{ $category->name }}">
+<form method="post" action="{{ route('restaurantCategories.store') }}">
+@csrf
+
+    <input type="text" name="name">
     <input type="submit">
 
 

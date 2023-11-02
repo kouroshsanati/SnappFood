@@ -13,7 +13,10 @@ class RestaurantCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('viewAny', RestaurantCategory::class);
+        return view('restaurantCategory.index', [
+            'categories' => RestaurantCategory::all()
+        ]);
     }
 
     /**
@@ -21,7 +24,8 @@ class RestaurantCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', RestaurantCategory::class);
+        return view('restaurantCategory.create');
     }
 
     /**
@@ -29,7 +33,8 @@ class RestaurantCategoryController extends Controller
      */
     public function store(StoreRestaurantCategoryRequest $request)
     {
-        //
+        $this->authorize('create', RestaurantCategory::class);
+        RestaurantCategory::query()->create($request->validated());
     }
 
     /**
@@ -37,7 +42,10 @@ class RestaurantCategoryController extends Controller
      */
     public function show(RestaurantCategory $restaurantCategory)
     {
-        //
+        $this->authorize('view', RestaurantCategory::class);
+        return view('restaurantCategory.show', [
+            'category' => $restaurantCategory
+        ]);
     }
 
     /**
@@ -45,7 +53,10 @@ class RestaurantCategoryController extends Controller
      */
     public function edit(RestaurantCategory $restaurantCategory)
     {
-        //
+        $this->authorize('update', RestaurantCategory::class);
+        return view('restaurantCategory.edit', [
+            'category' => $restaurantCategory
+        ]);
     }
 
     /**
@@ -53,7 +64,8 @@ class RestaurantCategoryController extends Controller
      */
     public function update(UpdateRestaurantCategoryRequest $request, RestaurantCategory $restaurantCategory)
     {
-        //
+        $this->authorize('update', RestaurantCategory::class);
+        $restaurantCategory->update($request->validated());
     }
 
     /**
@@ -61,6 +73,7 @@ class RestaurantCategoryController extends Controller
      */
     public function destroy(RestaurantCategory $restaurantCategory)
     {
-        //
+        $this->authorize('delete', RestaurantCategory::class);
+        $restaurantCategory->delete();
     }
 }

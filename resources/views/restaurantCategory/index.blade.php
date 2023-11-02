@@ -33,7 +33,7 @@
 
 
             <th scope="row" class="px-6 py-4 font-medium text-pink-500 whitespace-nowrap dark:text-pink-500">
-                <a href="{{ route('foodCategories.show',$category)}}">
+                <a href="{{ route('restaurantCategories.show',$category)}}">
                     {{$category->id}}
                 </a>
 
@@ -42,7 +42,7 @@
                 {{$category->name}}
             </td>
             <td class="px-6 py-4">
-                <a href="{{route('foodCategories.edit',$category)}}">
+                <a href="{{route('restaurantCategories.edit',$category)}}">
                     <button
                         class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">
                         {{ __('edit') }}
@@ -52,7 +52,7 @@
 
 
             <td class="px-6 py-4">
-                <form action="{{route('foodCategories.destroy',$category)}}" method="post">
+                <form action="{{route('restaurantCategories.destroy',$category)}}" method="post">
                     @csrf
                     @method("DELETE")
                     <button
@@ -77,7 +77,7 @@
         </td>
         <td class="px-6 py-4">
 
-            <a href="{{route('foodCategories.create')}}">
+            <a href="{{route('restaurantCategories.create')}}">
                 <button
                     class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">
                     {{ __('Create') }}

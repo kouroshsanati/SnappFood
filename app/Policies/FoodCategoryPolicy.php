@@ -35,7 +35,7 @@ class FoodCategoryPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, FoodCategory $foodCategory): bool
+    public function update(User $user): bool
     {
         return  $user->can('update-category');
     }

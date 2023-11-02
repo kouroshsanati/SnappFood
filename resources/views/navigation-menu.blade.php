@@ -20,6 +20,9 @@
                         <x-nav-link href="{{ route('foodCategories.index') }}" :active="request()->routeIs('foodCategories.index')">
                             {{ __('Manage Food Categories') }}
                         </x-nav-link>
+                        <x-nav-link href="{{ route('restaurantCategories.index') }}" :active="request()->routeIs('foodCategories.index')">
+                            {{ __('Manage Restaurant Categories') }}
+                        </x-nav-link>
                     @endif
 
                 </div>

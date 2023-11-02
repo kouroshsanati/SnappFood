@@ -11,19 +11,12 @@
 
 
 <table>
-
     <tr>
         <th scope="col" class="px-6 py-3">
             ID
         </th>
         <th scope="col" class="px-6 py-3">
             Name
-        </th>
-        <th scope="col" class="px-6 py-3">
-            Action
-        </th>
-        <th scope="col" class="px-6 py-3">
-            Action
         </th>
     </tr>
     </thead>
@@ -35,7 +28,6 @@
             <td class="px-6 py-4">
                 {{$category->name}}
             </td>
-
         </tr>
     </tbody>
 </table>
