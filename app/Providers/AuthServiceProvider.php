@@ -3,6 +3,14 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\Food;
+use App\Models\FoodCategory;
+use App\Models\Restaurant;
+use App\Models\RestaurantCategory;
+use App\Policies\FoodCategoryPolicy;
+use App\Policies\FoodPolicy;
+use App\Policies\RestaurantCategoryPolicy;
+use App\Policies\RestaurantPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -13,7 +21,11 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        FoodCategory::class => FoodCategoryPolicy::class,
+        Food::class => FoodPolicy::class,
+        Restaurant::class => RestaurantPolicy::class,
+        RestaurantCategory::class => RestaurantCategoryPolicy::class,
+
     ];
 
     /**

@@ -35,12 +35,7 @@ require __DIR__ . '/auth.php';
 
 // admin routes
 
-Route::resource('shop', \App\Http\Controllers\ShopController::class);
-
-/*Route::get('/test', function () {
-    dd(request()->user()->unreadNotifications);
-});*/
-
+Route::resource('foodCategories', \App\Http\Controllers\FoodCategoryController::class);
 
 
 

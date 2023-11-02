@@ -15,27 +15,27 @@ class PermissionSeeder extends Seeder
     {
         DB::table('permissions')->insert([
             [
-                'name' => 'create-category',
+                'name' => 'create-category', //create , store
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'name' => 'viewAny-categories',
+                'name' => 'viewAny-categories', // index
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'name' => 'view-category',
+                'name' => 'view-category', // show
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'name' => 'update-category',
+                'name' => 'update-category', // edit , update
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'name' => 'delete-category',
+                'name' => 'delete-category', // destroy
                 'created_at' => now(),
                 'updated_at' => now()
             ],
