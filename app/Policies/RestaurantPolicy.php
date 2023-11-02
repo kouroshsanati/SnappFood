@@ -29,7 +29,8 @@ class RestaurantPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->restaurant == null;
+
     }
 
     /**
@@ -37,7 +38,7 @@ class RestaurantPolicy
      */
     public function update(User $user, Restaurant $restaurant): bool
     {
-        //
+        return $user->restaurant == $restaurant;
     }
 
     /**

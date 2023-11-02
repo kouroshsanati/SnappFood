@@ -13,7 +13,7 @@ class FoodPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->can('viewAny-foods');
     }
 
     /**
@@ -21,7 +21,7 @@ class FoodPolicy
      */
     public function view(User $user, Food $food): bool
     {
-        //
+        return $user->can('view-food') && $user->restaurant->id = $food->restaurant_id;
     }
 
     /**
@@ -29,7 +29,7 @@ class FoodPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->can('create-food');
     }
 
     /**
@@ -37,7 +37,7 @@ class FoodPolicy
      */
     public function update(User $user, Food $food): bool
     {
-        //
+        return  $user->can('update-food') && $user->restaurant->id = $food->restaurant_id;
     }
 
     /**
@@ -45,7 +45,7 @@ class FoodPolicy
      */
     public function delete(User $user, Food $food): bool
     {
-        //
+        return $user->can('delete-food');
     }
 
     /**

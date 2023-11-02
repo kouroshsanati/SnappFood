@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Food;
 use App\Http\Requests\StoreFoodRequest;
 use App\Http\Requests\UpdateFoodRequest;
+use Illuminate\Support\Facades\Auth;
 
 class FoodController extends Controller
 {
@@ -13,7 +14,10 @@ class FoodController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('viewAny', Food::class);
+        return view('food.index', [
+            'foods' => Food::query()->where('restaurant_id', Auth::user()->restaurant->id)->get()
+        ]);
     }
 
     /**
@@ -21,7 +25,9 @@ class FoodController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Food::class);
+        return view('food.create');
+
     }
 
     /**
@@ -29,7 +35,13 @@ class FoodController extends Controller
      */
     public function store(StoreFoodRequest $request)
     {
-        //
+        /*dd($request->validated());*/
+        $this->authorize('create', Food::class);
+        Food::query()->create(
+            $request->validated()
+        );
+        return redirect()->route('foods.index');
+
     }
 
     /**
@@ -37,7 +49,10 @@ class FoodController extends Controller
      */
     public function show(Food $food)
     {
-        //
+        $this->authorize('view', $food);
+        return view('food.show', [
+            'food' => $food
+        ]);
     }
 
     /**
@@ -45,7 +60,10 @@ class FoodController extends Controller
      */
     public function edit(Food $food)
     {
-        //
+        $this->authorize('update', $food);
+        return view('food.edit', [
+            'food' => $food
+        ]);
     }
 
     /**
@@ -53,7 +71,10 @@ class FoodController extends Controller
      */
     public function update(UpdateFoodRequest $request, Food $food)
     {
-        //
+        $this->authorize('update', $food);
+        Food::query()->update($request->validated());
+        return redirect()->route('foods.index');
+
     }
 
     /**
@@ -61,6 +82,8 @@ class FoodController extends Controller
      */
     public function destroy(Food $food)
     {
-        //
+        $this->authorize('delete', $food);
+        $food->delete();
+        return redirect()->route('foods.index');
     }
 }

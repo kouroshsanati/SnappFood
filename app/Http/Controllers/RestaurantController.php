@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Restaurant;
 use App\Http\Requests\StoreRestaurantRequest;
 use App\Http\Requests\UpdateRestaurantRequest;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class RestaurantController extends Controller
 {
@@ -21,7 +23,8 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Restaurant::class);
+        return view('restaurants.create');
     }
 
     /**
@@ -29,7 +32,12 @@ class RestaurantController extends Controller
      */
     public function store(StoreRestaurantRequest $request)
     {
-        //
+        //dd($request->validated());
+        $this->authorize('create', Restaurant::class);
+        Restaurant::query()->create($request->validated());
+
+        Auth::user()->assignRole(Role::query()->find('2'));
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -45,7 +53,10 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        //
+        $this->authorize('update', $restaurant);
+        return view('restaurants.edit', [
+            'restaurant' => $restaurant,
+        ]);
     }
 
     /**
@@ -53,7 +64,9 @@ class RestaurantController extends Controller
      */
     public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
     {
-        //
+        $this->authorize('update', $restaurant);
+        $restaurant->update($request->validated());
+        return redirect()->route('restaurants.edit', $restaurant);
     }
 
     /**
@@ -61,6 +74,6 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        //
+
     }
 }

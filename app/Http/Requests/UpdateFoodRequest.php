@@ -11,7 +11,7 @@ class UpdateFoodRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateFoodRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required'],
+            'materials' => ['required'],
+            'price' => ['required','numeric'],
+            'food_category_id' => ['required'],
+            'restaurant_id' => ['required'],
         ];
     }
 }

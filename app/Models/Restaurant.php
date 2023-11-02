@@ -11,7 +11,6 @@ class Restaurant extends Model
 
     protected $guarded = ['id'];
 
-
     public function food()
     {
         return $this->hasMany(Food::class);
