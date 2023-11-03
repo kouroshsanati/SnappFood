@@ -35,6 +35,7 @@ class FoodCategoryController extends Controller
     {
         $this->authorize('create', FoodCategory::class);
         FoodCategory::query()->create($request->validated());
+        return redirect()->route('foodCategories.index');
     }
 
     /**
@@ -57,6 +58,7 @@ class FoodCategoryController extends Controller
         return view('foodCategory.edit', [
             'category' => $foodCategory
         ]);
+
     }
 
     /**
@@ -66,6 +68,8 @@ class FoodCategoryController extends Controller
     {
         $this->authorize('update', FoodCategory::class);
         $foodCategory->update($request->validated());
+        return redirect()->route('foodCategories.index');
+
     }
 
     /**
@@ -75,5 +79,7 @@ class FoodCategoryController extends Controller
     {
         $this->authorize('delete', FoodCategory::class);
         $foodCategory->delete();
+        return redirect()->route('foodCategories.index');
+
     }
 }

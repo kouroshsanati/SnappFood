@@ -17,14 +17,16 @@ class RoleSeeder extends Seeder
     {
         DB::table('roles')->insert([
             [
-                'name'=> 'admin'
+                'name' => 'admin'
             ],
             [
-                'name'=> 'restaurant_manager'
+                'name' => 'restaurant_manager'
             ]
         ]);
         \Spatie\Permission\Models\Role::query()->first()->syncPermissions(Permission::all());
-        \Spatie\Permission\Models\Role::query()->find('2')->syncPermissions([]);
+        \Spatie\Permission\Models\Role::query()->find('2')->syncPermissions([
+            6, 7, 8, 9, 10
+        ]);
 
 
     }

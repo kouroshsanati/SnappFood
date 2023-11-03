@@ -10,8 +10,8 @@
             </div>
             <!-- Materials -->
             <div>
-{{--                <x-input-label for="materials" class="'block font-medium text-sm text-pink-700"--}}
-{{--                               :value="__('Materials')"/>--}}
+              <x-input-label for="materials" class="'block font-medium text-sm text-pink-700"
+                               :value="__('Materials')"/>
                 <x-text-input id="materials" class="block mt-1 w-full" type="text" name="materials"
                               :value="old('materials')"/>
             </div>

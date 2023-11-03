@@ -27,6 +27,7 @@ class UpdateFoodRequest extends FormRequest
             'price' => ['required','numeric'],
             'food_category_id' => ['required'],
             'restaurant_id' => ['required'],
+            'discount'=>['required']
         ];
     }
 }
