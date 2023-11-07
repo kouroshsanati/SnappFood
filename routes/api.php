@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,12 +21,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
-Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/hello', function () {
         return 'hello';
     });
+
+    Route::prefix('addresses')->controller(AddressController::class)->name('addresses')
+        ->group(function () {
+            Route::get('/', 'index')->name('.index');
+            Route::get('/{address}', 'show')->name('.show');
+            Route::post('/', 'store')->name('.store');
+            Route::put('/{address}/', 'update')->name('.update');
+            Route::delete('/{address}/', 'destroy')->name('.destroy');
+            Route::patch('/{address}/', 'updateUserAddress');
+
+        });
 });

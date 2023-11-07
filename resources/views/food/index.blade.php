@@ -1,6 +1,4 @@
 <x-app-layout>
-
-
     <table>
         <tr>
             <th>Id</th>

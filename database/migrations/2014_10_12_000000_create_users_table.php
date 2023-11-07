@@ -16,6 +16,10 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->string('phone_number');
             $table->string('password');
+            $table->foreignId('current_address')
+                ->nullable()
+                ->default(null)
+                ->constrained('addresses');
             $table->timestamps();
         });
 

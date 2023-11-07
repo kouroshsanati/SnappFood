@@ -28,6 +28,7 @@
 </x-app-layout>--}}
 
 <x-app-layout>
+
     <div class="form-container">
         <form action="{{ route('restaurants.update', $restaurant) }}" method="post">
             @csrf

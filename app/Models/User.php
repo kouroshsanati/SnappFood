@@ -53,6 +53,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed'
     ];
 
     /**
@@ -67,5 +68,10 @@ class User extends Authenticatable
     public function restaurant()
     {
         return $this->hasOne(Restaurant::class);
+    }
+
+    public function addresses()
+    {
+        return $this->belongsToMany(Address::class);
     }
 }
