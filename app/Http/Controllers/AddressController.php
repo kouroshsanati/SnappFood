@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\storeAddressRequest;
-use App\Http\Requests\updateAddressRequest;
-use App\Models\AddressUser;
+use App\Http\Requests\AddressRequest\storeAddressRequest;
+use App\Http\Requests\AddressRequest\updateAddressRequest;
+use App\Http\Resources\AddressResource;
 use App\Models\Address;
+use App\Models\AddressUser;
 use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
@@ -13,12 +14,15 @@ class AddressController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Address $address)
     {
-        $addresses = Auth::user()->addresses;
-        return response([
-            'address' => $addresses,
-        ]);
+        $this->authorize('myAddress', $address);
+        return response(AddressResource::collection($address));
+        /* $addresses = Auth::user()->addresses;
+         return response([
+             'address' => $addresses,
+         ]);*/
+
     }
 
     /**
@@ -56,9 +60,10 @@ class AddressController extends Controller
     public function show(Address $address)
     {
         $this->authorize('myAddress', $address);
-        return response([
+        return response(new AddressResource($address));
+        /*return response([
             'address' => $address
-        ]);
+        ]);*/
     }
 
     /**
@@ -88,9 +93,8 @@ class AddressController extends Controller
     {
         $this->authorize('myAddress', $address);
         $address->delete();
-
         return response([
-            'message' => $address->title .' Has been Deleted successfully',
+            'message' => $address->title . ' Has been Deleted successfully',
         ]);
     }
 

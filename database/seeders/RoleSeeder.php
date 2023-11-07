@@ -23,7 +23,7 @@ class RoleSeeder extends Seeder
                 'name' => 'restaurant_manager'
             ]
         ]);
-        \Spatie\Permission\Models\Role::query()->first()->syncPermissions(Permission::all());
+        \Spatie\Permission\Models\Role::query()->where('name','admin')->first()->syncPermissions(Permission::all());
         \Spatie\Permission\Models\Role::query()->find('2')->syncPermissions([
             6, 7, 8, 9, 10
         ]);

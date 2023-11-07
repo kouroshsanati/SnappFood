@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FoodCategory\StoreFoodCategoryRequest;
+use App\Http\Requests\FoodCategory\UpdateFoodCategoryRequest;
 use App\Models\FoodCategory;
-use App\Http\Requests\StoreFoodCategoryRequest;
-use App\Http\Requests\UpdateFoodCategoryRequest;
 
 class FoodCategoryController extends Controller
 {
@@ -26,6 +26,7 @@ class FoodCategoryController extends Controller
     {
         $this->authorize('create', FoodCategory::class);
         return view('foodCategory.create');
+        //return redirect()->route('foodCategory')
     }
 
     /**

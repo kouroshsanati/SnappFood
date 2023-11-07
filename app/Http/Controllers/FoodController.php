@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Food\StoreFoodRequest;
+use App\Http\Requests\Food\UpdateFoodRequest;
 use App\Models\Food;
-use App\Http\Requests\StoreFoodRequest;
-use App\Http\Requests\UpdateFoodRequest;
+use App\Models\Restaurant;
 use Illuminate\Support\Facades\Auth;
 
 class FoodController extends Controller
@@ -86,4 +87,6 @@ class FoodController extends Controller
         $food->delete();
         return redirect()->route('foods.index');
     }
+
+
 }

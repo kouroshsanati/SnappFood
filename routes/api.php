@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RestaurantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,10 +38,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
         });
 
-    Route::prefix('restaurants')->controller(\App\Http\Controllers\RestaurantController::class)->name('restaurants')
+    Route::prefix('/restaurants')->controller(RestaurantController::class)->name('restaurants')
         ->group(function () {
             Route::get('/', 'index')->name('index');
-
+            Route::get('/{restaurant}/', 'show')->name('show');
         });
 
 

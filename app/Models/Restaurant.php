@@ -11,10 +11,6 @@ class Restaurant extends Model
 
     protected $guarded = ['id'];
 
-    public function food()
-    {
-        return $this->hasMany(Food::class);
-    }
 
     public function restaurantCategory()
     {
@@ -24,5 +20,10 @@ class Restaurant extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function foods()
+    {
+        return $this->hasMany(Food::class);
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\restaurantCategory\StoreRestaurantCategoryRequest;
+use App\Http\Requests\restaurantCategory\UpdateRestaurantCategoryRequest;
 use App\Models\RestaurantCategory;
-use App\Http\Requests\StoreRestaurantCategoryRequest;
-use App\Http\Requests\UpdateRestaurantCategoryRequest;
 
 class RestaurantCategoryController extends Controller
 {
@@ -14,7 +14,7 @@ class RestaurantCategoryController extends Controller
     public function index()
     {
         $this->authorize('viewAny', RestaurantCategory::class);
-        return view('restaurantCategory.index', [
+        return view('RestaurantCategory.index', [
             'categories' => RestaurantCategory::all()
         ]);
     }
@@ -25,7 +25,7 @@ class RestaurantCategoryController extends Controller
     public function create()
     {
         $this->authorize('create', RestaurantCategory::class);
-        return view('restaurantCategory.create');
+        return view('RestaurantCategory.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class RestaurantCategoryController extends Controller
     public function show(RestaurantCategory $restaurantCategory)
     {
         $this->authorize('view', RestaurantCategory::class);
-        return view('restaurantCategory.show', [
+        return view('RestaurantCategory.show', [
             'category' => $restaurantCategory
         ]);
     }
@@ -56,7 +56,7 @@ class RestaurantCategoryController extends Controller
     public function edit(RestaurantCategory $restaurantCategory)
     {
         $this->authorize('update', RestaurantCategory::class);
-        return view('restaurantCategory.edit', [
+        return view('RestaurantCategory.edit', [
             'category' => $restaurantCategory
         ]);
     }

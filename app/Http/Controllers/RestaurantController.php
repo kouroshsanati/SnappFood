@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RestaurantRequest\StoreRestaurantRequest;
+use App\Http\Requests\RestaurantRequest\UpdateRestaurantRequest;
+use App\Http\Resources\RestaurantResource;
 use App\Models\Restaurant;
-use App\Http\Requests\StoreRestaurantRequest;
-use App\Http\Requests\UpdateRestaurantRequest;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 
@@ -15,7 +16,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        return response(RestaurantResource::collection());
     }
 
     /**
@@ -45,7 +46,7 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        //
+        return new RestaurantResource();
     }
 
     /**
