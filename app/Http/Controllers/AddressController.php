@@ -90,7 +90,7 @@ class AddressController extends Controller
         $address->delete();
 
         return response([
-            'message' => $address->title . 'Has been Deleted',
+            'message' => $address->title .' Has been Deleted successfully',
         ]);
     }
 

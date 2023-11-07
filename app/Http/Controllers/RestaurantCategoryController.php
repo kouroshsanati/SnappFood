@@ -35,6 +35,7 @@ class RestaurantCategoryController extends Controller
     {
         $this->authorize('create', RestaurantCategory::class);
         RestaurantCategory::query()->create($request->validated());
+        return redirect()->route('restaurantCategories.index');
 
     }
 
@@ -77,5 +78,6 @@ class RestaurantCategoryController extends Controller
     {
         $this->authorize('delete', RestaurantCategory::class);
         $restaurantCategory->delete();
+        return redirect()->route('restaurantCategories.index');
     }
 }

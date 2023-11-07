@@ -16,10 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -40,4 +36,12 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::patch('/{address}/', 'updateUserAddress');
 
         });
+
+    Route::prefix('restaurants')->controller(\App\Http\Controllers\RestaurantController::class)->name('restaurants')
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+
+        });
+
+
 });
