@@ -18,8 +18,8 @@ class AddressResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'address' => $this->address,
-            'longitude' => $this->longitude,
             'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
         ];
     }
 }

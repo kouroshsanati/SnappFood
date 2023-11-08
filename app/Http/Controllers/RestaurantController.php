@@ -16,7 +16,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        return response(RestaurantResource::collection());
+        return response(RestaurantResource::collection(Restaurant::all()));
     }
 
     /**
@@ -46,7 +46,7 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        return new RestaurantResource();
+        return new RestaurantResource($restaurant);
     }
 
     /**

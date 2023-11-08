@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\FoodCategory;
+use App\Models\Restaurant;
 use App\Models\RestaurantCategory;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -26,18 +27,34 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admin'),
             'phone_number' => '09198251858'
         ]);
+        $user = User::create([
+            'name' => 'ali',
+            'email' => 'ali@yahoo.com',
+            'password' => bcrypt('12345678'),
+            'phone_number' => '09875454454'
+        ]);
         $admin->assignRole(Role::query()->first());
         FoodCategory::query()->create([
-           'name'=> 'hamberger'
+            'name' => 'hamberger'
         ]);
         FoodCategory::query()->create([
-            'name'=> 'salad'
+            'name' => 'salad'
         ]);
-        RestaurantCategory::query()->create([
-            'name'=>'fast food'
+        $cat1 = RestaurantCategory::query()->create([
+            'name' => 'fast food'
         ]);
-        RestaurantCategory::query()->create([
-            'name'=>'fast food 2'
+        $cat2 = RestaurantCategory::query()->create([
+            'name' => 'daryaee'
+        ]);
+        Restaurant::query()->create([
+            'user_id' => $user->id,
+            'restaurant_category_id' =>$cat1->id,
+            'address'=>'this is address',
+            'name'=>'something',
+            'telephone'=>'09127658484',
+            'bank_account_number'=>12312313,
+            'latitude'=>50,
+            'longitude'=>49,
         ]);
     }
 }

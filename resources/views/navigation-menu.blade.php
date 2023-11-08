@@ -28,10 +28,9 @@
                     @if(\Illuminate\Support\Facades\Auth::user()->restaurant == null)
                         <x-nav-link href="{{ route('restaurants.create') }}" :active="request()->routeIs('restaurants.index')">
                             {{ __('Add Restaurant') }}
-                        </x-nav-link>
+                        </x-nav-link>µ
 
                     @endif
-
                     @if(\Illuminate\Support\Facades\Auth::user()->hasRole('restaurant_manager'))
                         <x-nav-link href="{{ route('restaurants.edit' , \Illuminate\Support\Facades\Auth::user()->restaurant) }}" :active="request()->routeIs('restaurants.index')">
                             {{ __('Restaurant setting') }}

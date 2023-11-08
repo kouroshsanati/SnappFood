@@ -14,10 +14,10 @@ class AddressController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Address $address)
+    public function index()
     {
-        $this->authorize('myAddress', $address);
-        return response(AddressResource::collection($address));
+        $addresses = Auth::user()->addresses;
+        return response(AddressResource::collection($addresses));
         /* $addresses = Auth::user()->addresses;
          return response([
              'address' => $addresses,
@@ -50,7 +50,7 @@ class AddressController extends Controller
         } else {
             return response([
                 'message' => 'User Address added successfully',
-            ]);
+            ], 201);
         }
     }
 
@@ -106,6 +106,6 @@ class AddressController extends Controller
         ]);
         return response([
             'message ' => 'Current Address Updated Successfully'
-        ]);
+        ],);
     }
 }
