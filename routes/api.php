@@ -44,5 +44,14 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('/{restaurant}/', 'show')->name('show');
         });
 
+    Route::get('/restaurants/{restaurant}/foods', [\App\Http\Controllers\FoodController::class, 'indexApi']);
+
+
+    Route::prefix('carts')->controller(\App\Http\Controllers\CartController::class)->name('carts')->group(function () {
+        Route::get('/', 'index')->name('.index');
+        Route::post('/add', 'store')->name('.store');
+        Route::patch('/{cart}/', 'store')->name('.store');
+    });
+
 
 });

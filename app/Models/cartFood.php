@@ -9,13 +9,16 @@ class cartFood extends Model
 {
     use HasFactory;
 
-    public function carts()
+    protected $guarded = ['id'];
+    protected $table = 'cart_food';
+
+    public function cart()
     {
-        return $this->hasMany(Cart::class);
+        return $this->belongsTo(Cart::class);
     }
 
-    public function foods()
+    public function food()
     {
-        return $this->hasMany(Food::class);
+        return $this->belongsTo(Food::class);
     }
 }

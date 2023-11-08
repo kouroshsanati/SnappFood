@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('cart_food', function (Blueprint $table) {
             $table->id();
-            $table->string('cart_id');
-            $table->string('food_id');
+            $table->foreignId('cart_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('food_id')->constrained()->cascadeOnDelete();
             $table->string('count');
             $table->timestamps();
         });

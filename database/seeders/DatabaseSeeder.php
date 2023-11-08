@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
         FoodCategory::query()->create([
             'name' => 'hamberger'
         ]);
+        $user->assignRole(Role::findByName('restaurant_manager'));
         FoodCategory::query()->create([
             'name' => 'salad'
         ]);
@@ -48,13 +49,13 @@ class DatabaseSeeder extends Seeder
         ]);
         Restaurant::query()->create([
             'user_id' => $user->id,
-            'restaurant_category_id' =>$cat1->id,
-            'address'=>'this is address',
-            'name'=>'something',
-            'telephone'=>'09127658484',
-            'bank_account_number'=>12312313,
-            'latitude'=>50,
-            'longitude'=>49,
+            'restaurant_category_id' => $cat1->id,
+            'address' => 'this is address',
+            'name' => 'something',
+            'telephone' => '09127658484',
+            'bank_account_number' => 12312313,
+            'latitude' => 50,
+            'longitude' => 49,
         ]);
     }
 }
