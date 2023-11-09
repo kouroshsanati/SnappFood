@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('materials');
             $table->string('image')->nullable()->default('null');
-            $table->decimal('price',10,2);
+            $table->decimal('price');
             $table->decimal('discount')->default(0);
             $table->boolean('status')->default(1);
             $table->timestamps();

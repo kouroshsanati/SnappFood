@@ -16,6 +16,7 @@ class FoodResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'name'=>$this->name,
             'price' => $this->price,
             'off' => [
                 'label' => $this->discount,
@@ -23,6 +24,7 @@ class FoodResource extends JsonResource
             ],
             'raw_materials' => $this->materials,
             'image' => $this->image,
+            'total_price'=>$this->price_total,
         ];
     }
 }

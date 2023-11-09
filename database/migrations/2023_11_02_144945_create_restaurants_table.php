@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->string('bank_account_number');
             $table->double('latitude')->nullable()->default(null);
             $table->double('longitude')->nullable()->default(null);
+            $table->string('image')->nullable()->default('null');
             $table->decimal('cost_of_sending_order', 10, 2)->nullable()->default(null);
             $table->boolean('is_open')->default(1);
             $table->string('score')->nullable()->default(null);

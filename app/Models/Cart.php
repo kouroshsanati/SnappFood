@@ -10,7 +10,7 @@ class Cart extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $table = 'cart';
+
 
     public function restaurant()
     {
@@ -22,7 +22,7 @@ class Cart extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function food()
+    public function foods()
     {
         return $this->belongsToMany(Food::class);
     }
@@ -30,5 +30,10 @@ class Cart extends Model
     public function cartFoods()
     {
         return $this->hasMany(cartFood::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
