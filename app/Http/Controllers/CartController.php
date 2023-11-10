@@ -84,7 +84,6 @@ class CartController extends Controller
         $count = $request->count;
         $food = Food::query()->find($foodId);
 
-
         $cartFood = cartFood::query()->create([
             'cart_id' => $cart->id,
             'food_id' => $foodId,

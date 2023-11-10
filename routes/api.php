@@ -8,16 +8,6 @@ use App\Http\Controllers\RestaurantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -55,7 +45,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::patch('/{cart}', 'update')->name('.update');
         Route::get('/{cart}', 'show')->name('.show');
         Route::patch('/{cart}/pay', 'pay')->name('.pay');
-
     });
 
     //comments

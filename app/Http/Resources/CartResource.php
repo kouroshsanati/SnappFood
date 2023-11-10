@@ -23,6 +23,7 @@ class CartResource extends JsonResource
             ],
             'foods' => CartFoodResource::collection($this->cartFoods),
             'total_price'=>$this->price_total,
+            'is_paid'=>$this->is_paid,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
