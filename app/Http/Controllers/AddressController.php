@@ -106,6 +106,6 @@ class AddressController extends Controller
         ]);
         return response([
             'message ' => 'Current Address Updated Successfully'
-        ],);
+        ],201);
     }
 }

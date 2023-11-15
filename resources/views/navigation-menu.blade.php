@@ -15,24 +15,32 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('order.index') }}" :active="request()->routeIs('order.index')">
+                        {{ __('Order List') }}
+                    </x-nav-link>
 
                     @if(\Illuminate\Support\Facades\Auth::user()->hasRole('admin'))
-                        <x-nav-link href="{{ route('foodCategories.index') }}" :active="request()->routeIs('foodCategories.index')">
+                        <x-nav-link href="{{ route('foodCategories.index') }}"
+                                    :active="request()->routeIs('foodCategories.index')">
                             {{ __('Manage Food Categories') }}
                         </x-nav-link>
-                        <x-nav-link href="{{ route('restaurantCategories.index') }}" :active="request()->routeIs('restaurantCategories.index')">
+                        <x-nav-link href="{{ route('restaurantCategories.index') }}"
+                                    :active="request()->routeIs('restaurantCategories.index')">
                             {{ __('Manage Restaurant Categories') }}
                         </x-nav-link>
                     @endif
 
                     @if(\Illuminate\Support\Facades\Auth::user()->restaurant == null)
-                        <x-nav-link href="{{ route('restaurants.create') }}" :active="request()->routeIs('restaurants.index')">
+                        <x-nav-link href="{{ route('restaurants.create') }}"
+                                    :active="request()->routeIs('restaurants.index')">
                             {{ __('Add Restaurant') }}
-                        </x-nav-link>µ
+                        </x-nav-link>
 
                     @endif
                     @if(\Illuminate\Support\Facades\Auth::user()->hasRole('restaurant_manager'))
-                        <x-nav-link href="{{ route('restaurants.edit' , \Illuminate\Support\Facades\Auth::user()->restaurant) }}" :active="request()->routeIs('restaurants.index')">
+                        <x-nav-link
+                            href="{{ route('restaurants.edit' , \Illuminate\Support\Facades\Auth::user()->restaurant) }}"
+                            :active="request()->routeIs('restaurants.index')">
                             {{ __('Restaurant setting') }}
                         </x-nav-link>
 

@@ -18,7 +18,7 @@ class AuthController extends Controller
         return response([
             'token' => $token,
             'message' => 'User has been registered successfully'
-        ]);
+        ],200);
     }
 
 
