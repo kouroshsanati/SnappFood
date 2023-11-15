@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('restaurant_id')->constrained()->cascadeOnDelete();
             $table->boolean('is_paid')->default(0);
+            $table->enum('status', ['InProgress', 'preparing', 'send', 'delivered']);
             $table->string('price_total');
             $table->timestamps();
         });

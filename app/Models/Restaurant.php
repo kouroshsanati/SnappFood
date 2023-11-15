@@ -31,4 +31,9 @@ class Restaurant extends Model
     {
         return $this->hasManyThrough(Comment::class, Cart::class, 'restaurant_id', 'cart_id');
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

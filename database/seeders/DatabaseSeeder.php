@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'this is address',
             'name' => 'something',
             'telephone' => '09127658484',
-            'bank_account_number' => 12312313,
+            'bank_account_number' => 6037-7643-9874-8754,
             'latitude' => 50,
             'longitude' => 49,
         ]);

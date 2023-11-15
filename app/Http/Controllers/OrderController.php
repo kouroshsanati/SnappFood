@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -11,16 +14,14 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Auth::user()->restaurant->carts()->paginate(4);
+        return view('order.index', compact('orders'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -33,9 +34,9 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Cart $order)
     {
-        //
+        return view('order.show',compact('order'));
     }
 
     /**
