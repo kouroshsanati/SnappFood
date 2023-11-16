@@ -34,9 +34,10 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Cart $order)
+    public function show(Cart $cart)
     {
-        return view('order.show',compact('order'));
+        dd($cart);
+        //return view('order.show',compact('order'));
     }
 
     /**

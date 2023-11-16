@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
@@ -15,7 +16,7 @@ class AuthController extends Controller
     {
         $user = User::query()->create($request->validated());
         $token = $user->createToken('registered')->plainTextToken;
-        return response([
+        return response()->json([
             'token' => $token,
             'message' => 'User has been registered successfully'
         ],200);
@@ -26,13 +27,13 @@ class AuthController extends Controller
     {
         if (Auth::attempt($request->validated())) {
             $token = Auth::user()->createToken('loggedIn')->plainTextToken;
-            return response([
+            return response()->json([
                 'token' => $token,
                 'message' => 'User has been logged in successfully'
             ]);
         } else {
 
-            return response([
+            return response()->json([
                 'message' => 'no user has been found'
             ], 401);
         }

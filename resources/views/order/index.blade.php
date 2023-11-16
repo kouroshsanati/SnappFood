@@ -52,10 +52,14 @@
             <thead>
             <tr>
                 <th>id</th>
-                <th>user</th>
+                <th>Customer</th>
                 <th>status</th>
+                <th>Foods</th>
+                <th>Total Price</th>
                 <th>date</th>
+
                 <th>operation</th>
+
             </tr>
             </thead>
 
@@ -75,14 +79,22 @@
                             <span class="text-blue-800">delivered</span>
                         @endif
                     </td>
-                    <td>{{ persianDate($order->created_at) }}</td>
                     <td>
-                        <a href="{{ route('order.show',$order->id) }}" type="button" class="btn-grad-gray">Details</a>
+                        @foreach($order->foods as $food)
+                        {{ $food->name }}
+
+                        @endforeach
                     </td>
+                    <td>
+                        {{ $order->price_total }}
+                    </td>
+                    <td>{{ persianDate($order->created_at) }}</td>
+
                     <td>
                         <a href="#" type="button" class="btn-grad-red">Delete</a>
-
                     </td>
+
+
 
                 </tr>
 

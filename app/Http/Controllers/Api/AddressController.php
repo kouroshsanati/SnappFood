@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AddressRequest\storeAddressRequest;
 use App\Http\Requests\AddressRequest\updateAddressRequest;
 use App\Http\Resources\AddressResource;
@@ -17,7 +18,7 @@ class AddressController extends Controller
     public function index()
     {
         $addresses = Auth::user()->addresses;
-        return response(AddressResource::collection($addresses));
+        return response()->json(['data' => AddressResource::collection($addresses)],200);
         /* $addresses = Auth::user()->addresses;
          return response([
              'address' => $addresses,
@@ -48,7 +49,7 @@ class AddressController extends Controller
                 'current_address' => $address->id,
             ]);
         } else {
-            return response([
+            return response()->json([
                 'message' => 'User Address added successfully',
             ], 201);
         }
@@ -60,40 +61,27 @@ class AddressController extends Controller
     public function show(Address $address)
     {
         $this->authorize('myAddress', $address);
-        return response(new AddressResource($address));
+        return response()->json(['data' => new AddressResource($address)], 200);
         /*return response([
             'address' => $address
         ]);*/
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(updateAddressRequest $request, Address $address)
     {
         $this->authorize('myAddress', $address);
         $address->update($request->validated());
-        return response([
+        return response()->json([
             'message' => 'User Address Updated successfully'
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Address $address)
     {
         $this->authorize('myAddress', $address);
         $address->delete();
-        return response([
+        return response()->json([
             'message' => $address->title . ' Has been Deleted successfully',
         ]);
     }
@@ -104,8 +92,8 @@ class AddressController extends Controller
         Auth::user()->update([
             'current_address' => $address->id,
         ]);
-        return response([
+        return response()->json([
             'message ' => 'Current Address Updated Successfully'
-        ],201);
+        ], 201);
     }
 }

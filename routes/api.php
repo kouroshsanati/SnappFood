@@ -1,12 +1,11 @@
 <?php
 
-use App\Http\Controllers\AddressController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\FoodController;
-use App\Http\Controllers\RestaurantController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\AddressController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\FoodController;
+use App\Http\Controllers\Api\RestaurantController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -34,7 +33,7 @@ Route::middleware('auth:sanctum')->group(function () {
 //region cart
     Route::apiResource('carts', CartController::class);
     Route::patch('carts/{cart}/pay', [CartController::class, 'pay']);
-    //end region
+    //endregion
 
     //region comments
     Route::apiResource('comments', CommentController::class);

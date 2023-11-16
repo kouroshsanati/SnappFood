@@ -45,8 +45,39 @@
 
 
             </tr>
-
         @endforeach
+
+            <form >
+                {{--sort bt name--}}
+                <label for="name">sort by name</label>
+                <select name="name">
+
+                    <option value="asc">Asc</option>
+                    <option value="desc">Desc</option>
+
+                </select>
+                <input type="submit" name="submit">
+
+            </form>
+            <form>
+
+                {{--Filter by Category--}}
+                <label for="category">Filter by Category</label>
+
+                <select name="category" id="category">
+                    @foreach($foodCategory as $food)
+                        <option value="{{ $food->id }}">{{ $food->name }}</option>
+                    @endforeach
+                </select>
+                <input type="submit" name="submit">
+
+
+            </form>
+
+
+
+
+
 
     </table>
 

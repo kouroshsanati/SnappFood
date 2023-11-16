@@ -9,6 +9,7 @@ use App\Http\Resources\FoodCategoryResource;
 use App\Models\Food;
 use App\Models\FoodCategory;
 use App\Models\Restaurant;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class FoodController extends Controller
@@ -20,9 +21,10 @@ class FoodController extends Controller
     {
 
         $this->authorize('viewAny', Food::class);
+        $foods = Food::sortedFood();
         return view('food.index', [
-            'foods' => Food::query()->where('restaurant_id', Auth::user()->restaurant->id)->get()
-        ]);
+            'foods' => $foods->get()
+            , 'foodCategory' => FoodCategory::all()]);
     }
 
     /**

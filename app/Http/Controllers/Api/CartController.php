@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CartRequest\StoreCartRequest;
 use App\Http\Requests\CartRequest\UpdateCartRequest;
 use App\Http\Resources\CartCollection;
-use App\Http\Resources\CartFoodResource;
 use App\Http\Resources\CartResource;
 use App\Models\Cart;
 use App\Models\cartFood;
@@ -20,20 +20,9 @@ class CartController extends Controller
     public function index()
     {
         $carts = Auth::user()->carts;
-        return response(new CartCollection($carts));
+        return response()->json(['data' => new CartCollection($carts)], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreCartRequest $request)
     {
         $foodId = $request->post('food_id');
@@ -53,7 +42,7 @@ class CartController extends Controller
             'count' => $count,
         ]);
 
-        return response([
+        return response()->json([
             'message' => "food added to cart successfully",
             'cart_id' => $cart->id,
         ], 201);
@@ -64,16 +53,9 @@ class CartController extends Controller
      */
     public function show(Cart $cart)
     {
-        return response(new CartResource($cart));
+        return response()->json(['data' => new CartResource($cart)], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -94,16 +76,8 @@ class CartController extends Controller
             'price_total' => $extraPrice + $cart->price_total,
         ]);
 
-
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 
     public function pay(Cart $cart)
     {

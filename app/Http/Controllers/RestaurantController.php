@@ -16,7 +16,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        return response(RestaurantResource::collection(Restaurant::all()));
+        return response()->json(['data' => RestaurantResource::collection(Restaurant::all())],200);
     }
 
     /**
