@@ -19,6 +19,8 @@ Route::middleware('auth:sanctum')->group(function () {
         return 'hello';
     });
     //endregion
+
+    Route::put('update/personal',\App\Http\Controllers\Api\UserController::class);
 //region address
     Route::apiResource('addresses', AddressController::class);
     Route::patch('addresses/{address}', [AddressController::class, 'updateUserAddress']);

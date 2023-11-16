@@ -125,7 +125,6 @@
 <div class="flex gap-32 items-center justify-center min-h-screen bg-dots-darker bg-center bg-gray-100 selection:bg-red-500 selection:text-white">
     <h1 class="text-4xl font-semibold text-white text-center mt-16 mx-auto">Welcome to Snapp Food</h1>
 
-    <img class="absolute inset-0 w-full h-full object-cover bg-cover m-" src="{{ asset('storage/images/snappFood.jpg')}}" alt="Restaurant Image">
 
 
 

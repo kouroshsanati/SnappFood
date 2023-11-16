@@ -37,4 +37,9 @@ class Food extends Model
     {
         return $this->blongsTo(Restaurant::class);
     }
+
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class);
+    }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\CommentRequest;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCommentRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class StoreCommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cart_id' => ['required','exists:carts,id'],
-            'score' => ['required','between:1,5'],
-            'content' => ['required', 'string', 'min:2', 'max:255'],
+            "name" => 'required|string',
+            "phone_number" => 'required|unique:users',
+            "password" => 'required|confirmed',
         ];
     }
 }
