@@ -27,7 +27,9 @@ class StoreRestaurantRequest extends FormRequest
             'telephone' => 'required',
             'bank_account_number' => 'required',
             'restaurant_category_id' => 'required',
-            'user_id' => 'required'
+            'user_id' => 'required',
+            'latitude' => ['required'],
+            'longitude' => ['required'],
         ];
     }
 }

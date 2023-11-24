@@ -41,11 +41,26 @@ class DatabaseSeeder extends Seeder
         FoodCategory::query()->create([
             'name' => 'salad'
         ]);
+        $user->assignRole(Role::findByName('restaurant_manager'));
+        FoodCategory::query()->create([
+            'name' => 'sandwich'
+        ]);
+        $user->assignRole(Role::findByName('restaurant_manager'));
+        FoodCategory::query()->create([
+            'name' => 'Kebab'
+        ]);
+        $user->assignRole(Role::findByName('restaurant_manager'));
+        FoodCategory::query()->create([
+            'name' => 'Nooshidani'
+        ]);
         $cat1 = RestaurantCategory::query()->create([
             'name' => 'fast food'
         ]);
         $cat2 = RestaurantCategory::query()->create([
             'name' => 'daryaee'
+        ]);
+        $cat3 = RestaurantCategory::query()->create([
+            'name' => 'restaurant'
         ]);
         Restaurant::query()->create([
             'user_id' => $user->id,

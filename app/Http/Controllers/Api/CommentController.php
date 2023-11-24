@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CommentRequest\ShowCommentRequest;
 use App\Http\Requests\CommentRequest\StoreCommentRequest;
-use App\Http\Requests\ShowCommentRequest;
 use App\Http\Resources\CommentCollection;
 use App\Models\Comment;
 use App\Models\Food;
 use App\Models\Restaurant;
-use Illuminate\Http\Request;
 
 
 class CommentController extends Controller

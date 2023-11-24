@@ -51,6 +51,14 @@
             <label for="address">Address</label>
             <input type="text" name="address" id="address" class="form-control rounded-md w-full text-center p-10">
         </div>
+        <div class="form-group mb-4">
+            <label for="latitude">Latitude</label>
+            <input type="text" name="latitude" id="latitude" class="form-control rounded-md w-full text-center p-10">
+        </div>
+        <div class="form-group mb-4">
+            <label for="longitude">Longitude</label>
+            <input type="text" name="longitude" id="longitude" class="form-control rounded-md w-full text-center p-10">
+        </div>
 
         <div class="form-group mb-4">
             <label for="telephone">Phone Number</label>

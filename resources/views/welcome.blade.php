@@ -74,12 +74,16 @@
     <!-- افزودن تصویر رستوران -->
     <img class="absolute inset-0 w-full h-full object-cover" src="images/snappFood.jpg" alt="Restaurant Image">
 
-    <!-- متن خوش آمدگویی -->
+
     <h1 class="text-4xl font-semibold text-white text-center mt-16">Welcome to Snapp Food</h1>
 </div>
 </body>
 </html>
 --}}
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">

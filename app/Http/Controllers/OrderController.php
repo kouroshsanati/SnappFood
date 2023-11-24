@@ -15,7 +15,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Auth::user()->restaurant->carts()->paginate(4);
-        return view('order.index', compact('orders'));
+        return view('dashboard');
     }
 
     /**
@@ -34,9 +34,9 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Cart $cart)
+    public function show(Cart $order)
     {
-        dd($cart);
+        dd($order);
         //return view('order.show',compact('order'));
     }
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\FoodController;
 use App\Http\Controllers\Api\RestaurantController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,7 +21,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     //endregion
 
-    Route::put('update/personal',\App\Http\Controllers\Api\UserController::class);
+    Route::put('update/personal', UserController::class);
 //region address
     Route::apiResource('addresses', AddressController::class);
     Route::patch('addresses/{address}', [AddressController::class, 'updateUserAddress']);
@@ -39,8 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //region comments
     Route::apiResource('comments', CommentController::class);
-    /*Route::get('comments', [CommentController::class, 'index']);
-    Route::post('comments', [CommentController::class, 'store']);*/
+
 //endregion
 
 });
