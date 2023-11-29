@@ -84,35 +84,45 @@
 
 
 
-
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Laravel</title>
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
     <!-- Styles -->
     <style>
-        /* ... (your existing styles) ... */
-
+        body {
+            background: url('{{ asset('image/welcome.jpeg') }}') center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-family: 'figtree', sans-serif;
+            color: white;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
         .flex-center {
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
+            text-align: center;
         }
-
-        .bg-cover {
-            object-fit: cover;
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
         }
         .btn-grad {
-            background-image: linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%);
-            margin: 10px;
+            background-image: linear-gradient(to right, #232526 0%, #414345 51%, #232526 100%);
             padding: 15px 45px;
             text-align: center;
             text-transform: uppercase;
@@ -126,31 +136,29 @@
     </style>
 </head>
 <body class="container">
-<div class="flex gap-32 items-center justify-center min-h-screen bg-dots-darker bg-center bg-gray-100 selection:bg-red-500 selection:text-white">
-    <h1 class="text-4xl font-semibold text-white text-center mt-16 mx-auto">Welcome to Snapp Food</h1>
-
-
-
-
-    <div class="text-center flex-center flex-col">
+<div class="flex-center">
+    <h1 class="text-4xl font-semibold mt-16">Welcome to Snapp Food</h1>
+    <div class="button-container">
         @if (Route::has('login'))
             @auth
-                <button class="btn-grad" href="{{ url('/dashboard') }}" class="font-semi-bold text-white bg-blue-500 hover:bg-blue-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500 px-4 py-2 rounded-lg">Dashboard</button>
+                <button class="btn-grad" href="{{ url('/dashboard') }}">Dashboard</button>
             @else
-                <button  onclick="window.location.href='{{ route('login') }}'" class="btn-grad">Log in</button>
-
+                <button onclick="window.location.href='{{ route('login') }}'" class="btn-grad">Log in</button>
                 @if (Route::has('register'))
                     <button onclick="window.location.href='{{ route('register') }}'" class="btn-grad">Register</button>
                 @endif
             @endauth
         @endif
-
-
     </div>
-
 </div>
 </body>
 </html>
+
+
+
+
+
+
 
 
 

@@ -36,8 +36,8 @@ class OrderController extends Controller
      */
     public function show(Cart $order)
     {
-        dd($order);
-        //return view('order.show',compact('order'));
+       // dd($order);
+        return view('order.show',compact('order'));
     }
 
     /**
