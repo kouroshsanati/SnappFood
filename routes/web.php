@@ -40,6 +40,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::resource('restaurants', \App\Http\Controllers\RestaurantController::class);
     Route::resource('foods', \App\Http\Controllers\FoodController::class);
     Route::resource('order',\App\Http\Controllers\OrderController::class);
+
+
+    Route::patch('/carts/{cartId}/update-status', [\App\Http\Controllers\OrderController::class, 'updateStatus'])->name('carts.updateStatus');
+
 });
 
 
