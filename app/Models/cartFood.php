@@ -21,4 +21,9 @@ class cartFood extends Model
     {
         return $this->belongsTo(Food::class);
     }
+
+    public function archivedCart()
+    {
+        return $this->belongsTo(ArchivedCart::class);
+    }
 }

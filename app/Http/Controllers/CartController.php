@@ -7,9 +7,11 @@ use App\Http\Requests\CartRequest\UpdateCartRequest;
 use App\Http\Resources\CartCollection;
 use App\Http\Resources\CartFoodResource;
 use App\Http\Resources\CartResource;
+use App\Models\ArchivedCart;
 use App\Models\Cart;
 use App\Models\cartFood;
 use App\Models\Food;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -97,13 +99,37 @@ class CartController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function updateStatus(Request $request, $cartId)
     {
-        //
+        $cart = Cart::findOrFail($cartId);
+
+        $request->validate([
+            'status' => 'required|in:InProgress,preparing,send,delivered',
+        ]);
+
+        $newStatus = $request->input('status');
+
+        if ($newStatus === 'delivered') {
+            // حذف کامنت‌های مرتبط با این سفارش
+            $cart->comments()->delete();
+
+            ArchivedCart::create([
+                'user_id' => $cart->user_id,
+                'restaurant_id' => $cart->restaurant_id,
+                'is_paid' => $cart->is_paid,
+                'status' => 'delivered',
+                'price_total' => $cart->price_total,
+            ]);
+
+            $cart->delete();
+        } else {
+            $cart->update(['status' => $newStatus]);
+        }
+
+        return redirect()->route('carts.index')->with('success', 'وضعیت سفارش با موفقیت به‌روزرسانی شد.');
     }
+
+
 
     public function pay(Cart $cart)
     {

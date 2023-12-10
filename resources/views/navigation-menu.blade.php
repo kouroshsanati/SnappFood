@@ -18,6 +18,10 @@
                     <x-nav-link href="{{ route('order.index') }}" :active="request()->routeIs('order.index')">
                         {{ __('Order List') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('archived_carts.index') }}" :active="request()->routeIs('archived_carts.index')">
+                        {{ __('Archived List') }}
+                    </x-nav-link>
+
 
                     @if(\Illuminate\Support\Facades\Auth::user()->hasRole('admin'))
                         <x-nav-link href="{{ route('foodCategories.index') }}"

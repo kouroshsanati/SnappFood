@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ArchivedCartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +45,15 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
 
     Route::patch('/carts/{cartId}/update-status', [\App\Http\Controllers\OrderController::class, 'updateStatus'])->name('carts.updateStatus');
+    // routes/web.php
+
+
+    Route::patch('/carts/{cartId}/update-status', [CartController::class, 'updateStatus'])
+        ->name('carts.updateStatus');
+
+    Route::get('/archived-carts', [ArchivedCartController::class, 'index'])->name('archived_carts.index');
+
+
 
 });
 
