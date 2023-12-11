@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Notifications\CartStatusUpdated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 
 class OrderController extends Controller
@@ -69,13 +71,20 @@ class OrderController extends Controller
     }
     public function updateStatus(Request $request, $cartId)
     {
-        $cart = Cart::findOrFail($cartId); // یافتن سبد خرید با استفاده از شناسه
+        $cart = Cart::findOrFail($cartId);
 
         $request->validate([
-            'status' => 'required|in:InProgress,preparing,send,delivered', // اعتبارسنجی وضعیت
+            'status' => 'required|in:InProgress,preparing,send,delivered',
         ]);
 
-        $cart->update(['status' => $request->input('status')]); // بروزرسانی وضعیت
+
+        $cart->update(['status' => $request->input('status')]);
+
+        // ارسال ایمیل با استفاده از Notification
+        Notification::send(
+            auth()->user(), // یا ممکن است به کاربر دیگری ارسال شود
+            new CartStatusUpdated($cart)
+        );
 
         return redirect()->route('carts.index')->with('success', 'وضعیت سفارش با موفقیت به‌روزرسانی شد.');
     }

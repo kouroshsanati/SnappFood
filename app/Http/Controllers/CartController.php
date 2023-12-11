@@ -11,8 +11,10 @@ use App\Models\ArchivedCart;
 use App\Models\Cart;
 use App\Models\cartFood;
 use App\Models\Food;
+use App\Notifications\CartStatusUpdated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class CartController extends Controller
 {
@@ -126,6 +128,10 @@ class CartController extends Controller
             $cart->update(['status' => $newStatus]);
         }
 
+        Notification::send(
+            auth()->user(), // یا ممکن است به کاربر دیگری ارسال شود
+            new CartStatusUpdated($cart)
+        );
         return redirect()->route('carts.index')->with('success', 'وضعیت سفارش با موفقیت به‌روزرسانی شد.');
     }
 
