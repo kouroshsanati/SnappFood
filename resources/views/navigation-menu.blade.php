@@ -21,9 +21,13 @@
                     <x-nav-link href="{{ route('archived_carts.index') }}" :active="request()->routeIs('archived_carts.index')">
                         {{ __('Archived List') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('comments.index') }}" :active="request()->routeIs('comments.index')">
+                        {{ __('comments') }}
+                    </x-nav-link>
 
 
-                    @if(\Illuminate\Support\Facades\Auth::user()->hasRole('admin'))
+
+                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('admin'))
                         <x-nav-link href="{{ route('foodCategories.index') }}"
                                     :active="request()->routeIs('foodCategories.index')">
                             {{ __('Manage Food Categories') }}

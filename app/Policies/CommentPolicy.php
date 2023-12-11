@@ -12,9 +12,17 @@ class CommentPolicy
      */
     public function create(User $user)
     {
+       /* $cart_id = request()->get('cart_id');
+        $cart = Cart::query()->find($cart_id);
+        return $user->carts->contains($cart) && $cart->comments->first() === null && $cart->is_paid === 1;*/
+
         $cart_id = request()->get('cart_id');
         $cart = Cart::query()->find($cart_id);
-        return $user->carts->contains($cart) && $cart->comments->first() === null && $cart->is_paid === 1;
+
+        // Check if the user owns the cart, the cart has no comments, and is_paid is 1
+        $isAuthorized = $user->carts->contains($cart) && $cart->comments->isEmpty() && $cart->is_paid === 1;
+
+        return $isAuthorized;
     }
 
 }

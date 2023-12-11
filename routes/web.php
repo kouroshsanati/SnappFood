@@ -2,6 +2,7 @@
 
 //use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\CartController;
@@ -54,6 +55,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         ->name('carts.updateStatus');
 
     Route::get('/archived-carts', [ArchivedCartController::class, 'index'])->name('archived_carts.index');
+
+    Route::get('/carts/comments', [CommentController::class, 'index'])->name('comments.index');
 
 
 

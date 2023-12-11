@@ -46,4 +46,5 @@ class Cart extends Model
     {
         return $this->hasOne(ArchivedCart::class);
     }
+
 }
