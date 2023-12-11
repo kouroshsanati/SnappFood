@@ -44,8 +44,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::resource('order',\App\Http\Controllers\OrderController::class);
 
 
-   // Route::patch('/carts/{cartId}/update-status', [\App\Http\Controllers\OrderController::class, 'updateStatus'])->name('carts.updateStatus');
-    // routes/web.php
+    //Route::patch('/carts/{cartId}/update-status', [\App\Http\Controllers\OrderController::class, 'updateStatus'])->name('carts.updateStatus');
+
 
 
     Route::patch('/carts/{cartId}/update-status', [CartController::class, 'updateStatus'])

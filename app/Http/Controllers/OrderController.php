@@ -69,23 +69,4 @@ class OrderController extends Controller
     {
         //
     }
-    public function updateStatus(Request $request, $cartId)
-    {
-        $cart = Cart::findOrFail($cartId);
-
-        $request->validate([
-            'status' => 'required|in:InProgress,preparing,send,delivered',
-        ]);
-
-
-        $cart->update(['status' => $request->input('status')]);
-
-        // ارسال ایمیل با استفاده از Notification
-        Notification::send(
-            auth()->user(), // یا ممکن است به کاربر دیگری ارسال شود
-            new CartStatusUpdated($cart)
-        );
-
-        return redirect()->route('carts.index')->with('success', 'وضعیت سفارش با موفقیت به‌روزرسانی شد.');
-    }
 }
