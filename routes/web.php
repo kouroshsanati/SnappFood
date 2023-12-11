@@ -58,6 +58,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
     Route::get('/carts/comments', [CommentController::class, 'index'])->name('comments.index');
 
+    Route::post('/carts/comments/{comment}/reply', [CommentController::class, 'reply'])->name('comments.reply');
+
 
 
 });

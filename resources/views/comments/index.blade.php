@@ -1,4 +1,3 @@
-
 <x-app-layout>
 
     <x-slot name="header">
@@ -11,10 +10,21 @@
             @foreach($cart->comments as $comment)
                 <p class="mt-2">{{ $comment->content }}</p>
             @endforeach
+
+            {{-- Reply Form --}}
+            <form method="post" action="{{ route('comments.reply', ['comment' => $comment->id]) }}" class="mt-2">
+                @csrf
+                <div class="mb-3">
+                    <label for="reply" class="form-label">Reply:</label>
+                    <input type="text" class="form-control" id="reply" name="reply" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Reply</button>
+            </form>
         </div>
     @endforeach
 
 </x-app-layout>
+
 
 
 
