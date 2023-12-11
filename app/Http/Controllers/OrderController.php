@@ -4,28 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Notifications\CartStatusUpdated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
+
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+
     public function index()
     {
+
         $orders = Auth::user()->restaurant->carts()->paginate(4);
-        return view('dashboard');
+        //return view('dashboard');
+
+        $carts = Cart::all(); // دریافت تمام ردیف‌های جدول carts
+
+        return view('order.index', compact('carts','orders')); // ارسال اطلاعات به ویو
+/*>>>>>>> details*/
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
@@ -53,7 +56,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       //
     }
 
     /**

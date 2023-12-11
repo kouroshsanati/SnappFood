@@ -1,7 +1,11 @@
 <?php
 
+//use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+//use App\Http\Controllers\CartController;
+use App\Http\Controllers\ArchivedCartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +44,19 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::resource('restaurants', \App\Http\Controllers\RestaurantController::class);
     Route::resource('foods', \App\Http\Controllers\FoodController::class);
     Route::resource('order',\App\Http\Controllers\OrderController::class);
+
+
+    //Route::patch('/carts/{cartId}/update-status', [\App\Http\Controllers\OrderController::class, 'updateStatus'])->name('carts.updateStatus');
+
+
+
+    Route::patch('/carts/{cartId}/update-status', [CartController::class, 'updateStatus'])
+        ->name('carts.updateStatus');
+
+    Route::get('/archived-carts', [ArchivedCartController::class, 'index'])->name('archived_carts.index');
+
+
+
 });
 
 

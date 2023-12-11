@@ -7,10 +7,14 @@ use App\Http\Requests\CartRequest\StoreCartRequest;
 use App\Http\Requests\CartRequest\UpdateCartRequest;
 use App\Http\Resources\CartCollection;
 use App\Http\Resources\CartResource;
+use App\Models\ArchivedCart;
 use App\Models\Cart;
 use App\Models\cartFood;
 use App\Models\Food;
+use App\Notifications\CartStatusUpdated;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class CartController extends Controller
 {
@@ -77,6 +81,48 @@ class CartController extends Controller
         ]);
 
     }
+
+/*<<<<<<< HEAD:app/Http/Controllers/Api/CartController.php
+=======*/
+    public function updateStatus(Request $request, $cartId)
+    {
+        $cart = Cart::findOrFail($cartId);
+
+        $request->validate([
+            'status' => 'required|in:InProgress,preparing,send,delivered',
+        ]);
+
+        $newStatus = $request->input('status');
+
+        if ($newStatus === 'delivered') {
+            // حذف کامنت‌های مرتبط با این سفارش
+            $cart->comments()->delete();
+
+            ArchivedCart::create([
+                'user_id' => $cart->user_id,
+                'restaurant_id' => $cart->restaurant_id,
+                'is_paid' => $cart->is_paid,
+                'status' => 'delivered',
+                'price_total' => $cart->price_total,
+            ]);
+
+            $cart->delete();
+
+            // Redirect to the 'order.index' route after delivery
+            return redirect()->route('order.index')->with('success', 'وضعیت سفارش با موفقیت به‌روزرسانی شد.');
+        } else {
+            $cart->update(['status' => $newStatus]);
+        }
+
+        Notification::send(
+            auth()->user(),
+            new CartStatusUpdated($cart)
+        );
+
+        return redirect()->route('carts.index')->with('success', 'وضعیت سفارش با موفقیت به‌روزرسانی شد.');
+    }
+    /*>>>>>>> details:app/Http/Controllers/CartController.php*/
+
 
 
     public function pay(Cart $cart)

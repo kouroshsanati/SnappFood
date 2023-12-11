@@ -1,52 +1,22 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2>
-            order list
-        </h2>
-    </x-slot>
 
 
-    @if($orders->count())
-        <style>
-            table {
-                border-collapse: collapse;
-                width: 100%;
-            }
 
-            th, td {
-                border: 1px solid #ddd;
-                padding: 8px;
-                text-align: left;
-            }
-            .btn-grad-gray {
-                background-image: linear-gradient(to right, #000000 0%, #434343  51%, #000000  100%);
-                margin: 10px;
-                padding: 15px;
-                text-align: center;
-                text-transform: uppercase;
-                transition: 0.5s;
-                background-size: 100% auto;
-                color: white;
-                box-shadow: 0 0 20px #eee;
-                border-radius: 10px;
-                display: block;
-            }
+    <!-- resources/views/carts/index.blade.php -->
 
-            .btn-grad-red {
-                background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%);
-                margin: 10px;
-                padding: 15px;
-                text-align: center;
-                text-transform: uppercase;
-                transition: 0.5s;
-                background-size: 100% auto;
-                color: white;
-                box-shadow: 0 0 20px #eee;
-                border-radius: 10px;
-                display: block;
-            }
+    <h1 class="text-3xl font-bold mb-4">لیست سبد خریدها</h1>
 
-        </style>
+    @foreach($carts as $cart)
+        <div class="bg-white shadow-md rounded p-4 mb-4">
+            <p class="mb-2">
+                <span class="font-bold">شماره سفارش:</span> {{ $cart->id }}
+            </p>
+            <p class="mb-2">
+                <span class="font-bold">وضعیت:</span> {{ $cart->status }}
+            </p>
+            <p class="mb-2">
+                <span class="font-bold">مجموع قیمت:</span> {{ $cart->price_total }}
+            </p>
 
         <table class="my-4">
             <thead>
@@ -105,8 +75,27 @@
 
         <div class="mt-6">
             {{ $orders->links() }}
+
+            <form method="post" action="{{ route('carts.updateStatus', ['cartId' => $cart->id]) }}" class="mb-2">
+                @csrf
+                @method('patch')
+
+                <div class="flex items-center">
+                    <label for="status" class="mr-2">تغییر وضعیت به:</label>
+                    <select name="status" id="status" class="p-2 border rounded">
+                        <option value="InProgress">InProgress</option>
+                        <option value="preparing">preparing</option>
+                        <option value="send">send</option>
+                        <option value="delivered">delivered</option>
+                    </select>
+
+                    <button type="submit" class="bg-blue-500 text-white p-2 rounded ml-2">ذخیره تغییرات</button>
+                </div>
+            </form>
+
         </div>
-    @endif
+    @endforeach
+
 
 
 </x-app-layout>
