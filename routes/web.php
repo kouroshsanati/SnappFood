@@ -4,6 +4,7 @@
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\CartController;
 use App\Http\Controllers\ArchivedCartController;
@@ -60,6 +61,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
     Route::post('/carts/comments/{comment}/reply', [CommentController::class, 'reply'])->name('comments.reply');
 
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 
 
 });

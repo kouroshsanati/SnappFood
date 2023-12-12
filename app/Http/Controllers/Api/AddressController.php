@@ -62,9 +62,6 @@ class AddressController extends Controller
     {
         $this->authorize('myAddress', $address);
         return response()->json(['data' => new AddressResource($address)], 200);
-        /*return response([
-            'address' => $address
-        ]);*/
     }
 
 
