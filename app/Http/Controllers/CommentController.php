@@ -29,7 +29,7 @@ class CommentController extends Controller
         $reply = new Comment([
             'content' => $request->input('reply'),
             'score' => $request->input('score', 0),
-            'cart_id' => $cart->id,
+            'cart_id' => $comment->id,
             'parent_id' => $comment->id,
         ]);
 
