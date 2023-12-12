@@ -39,9 +39,8 @@ class CommentController extends Controller
 
     public function store(StoreCommentRequest $request)
     {
-
         $this->authorize('create', Comment::class);
-        $comment = Comment::query()->create($request->validated());
+        Comment::query()->create($request->validated());
         return response()->json([
             'message' => 'Comment  added successfully',
         ], 201);
