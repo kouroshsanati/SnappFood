@@ -82,8 +82,7 @@ class CartController extends Controller
 
     }
 
-/*<<<<<<< HEAD:app/Http/Controllers/Api/CartController.php
-=======*/
+
     public function updateStatus(Request $request, $cartId)
     {
         $cart = Cart::findOrFail($cartId);
@@ -95,9 +94,7 @@ class CartController extends Controller
         $newStatus = $request->input('status');
 
         if ($newStatus === 'delivered') {
-            // حذف کامنت‌های مرتبط با این سفارش
-            $cart->comments()->delete();
-
+            // Create an ArchivedCart instead of deleting the cart
             ArchivedCart::create([
                 'user_id' => $cart->user_id,
                 'restaurant_id' => $cart->restaurant_id,
@@ -106,7 +103,8 @@ class CartController extends Controller
                 'price_total' => $cart->price_total,
             ]);
 
-            $cart->delete();
+            // Update the status of the current cart
+            $cart->update(['status' => $newStatus]);
 
             // Redirect to the 'order.index' route after delivery
             return redirect()->route('order.index')->with('success', 'وضعیت سفارش با موفقیت به‌روزرسانی شد.');
@@ -121,7 +119,8 @@ class CartController extends Controller
 
         return redirect()->route('carts.index')->with('success', 'وضعیت سفارش با موفقیت به‌روزرسانی شد.');
     }
-    /*>>>>>>> details:app/Http/Controllers/CartController.php*/
+
+
 
 
 

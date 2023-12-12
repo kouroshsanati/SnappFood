@@ -26,7 +26,7 @@ class OrderController extends Controller
         $carts = Cart::all(); // دریافت تمام ردیف‌های جدول carts
 
         return view('order.index', compact('carts','orders')); // ارسال اطلاعات به ویو
-/*>>>>>>> details*/
+
     }
 
     public function store(Request $request)
