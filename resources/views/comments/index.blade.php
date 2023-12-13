@@ -6,29 +6,27 @@
 
     @foreach($carts as $cart)
         @if($cart->comments->isNotEmpty())
-            <div class="mt-4">
+            <div class="mt-8">
                 <h2 class="text-xl font-semibold">{{ __('Comments for Cart ID') }}: {{ $cart->id }}</h2>
-                @foreach($cart->comments as $comment)
-                    <p class="mt-2">{{ $comment->content }}</p>
+                <div class="mt-4 space-y-4">
+                    @foreach($cart->comments as $comment)
+                        <div class="border p-4 rounded">
+                            <p class="mb-2">{{ $comment->content }}</p>
 
-                    {{-- Reply Form --}}
-                    <form method="post" action="{{ route('comments.reply',  $comment->id) }}" class="mt-2">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="reply" class="form-label">Reply:</label>
-                            <input type="text" class="form-control" id="reply" name="reply" required>
+                            {{-- Reply Form --}}
+                            <form method="post" action="{{ route('comments.reply',  $comment->id) }}">
+                                @csrf
+                                <div class="mt-2">
+                                    <label for="reply" class="block text-sm font-medium text-gray-600">Reply:</label>
+                                    <input type="text" class="mt-1 p-2 border rounded-md w-full" id="reply" name="reply" required>
+                                </div>
+                                <button type="submit" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md">Add Reply</button>
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Reply</button>
-                    </form>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         @endif
     @endforeach
 
-
-
 </x-app-layout>
-
-
-
-
